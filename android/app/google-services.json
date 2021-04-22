@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "4629537873",
+    "project_id": "smart-payments",
+    "storage_bucket": "smart-payments.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4629537873:android:12d3c4ee02849c875f0470",
+        "android_client_info": {
+          "package_name": "com.example.smartpayment_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4629537873-n2447aiu25dm7usi0uu08gim2kblni0e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp1zhdy0iKUms-yiq7QggIc8vIS-2sCqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4629537873-n2447aiu25dm7usi0uu08gim2kblni0e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
