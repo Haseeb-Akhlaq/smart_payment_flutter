@@ -8,6 +8,7 @@ class RecentCompanyModel {
 
   String firstName;
   String secondName;
+  String email;
   String postCode;
   String address;
   String accountNumber;
@@ -17,6 +18,7 @@ class RecentCompanyModel {
     this.name,
     this.time,
     this.pic,
+    this.email,
     this.address,
     this.accountNumber,
     this.firstName,
@@ -36,6 +38,7 @@ class RecentCompanyModel {
     this.secondName = map['secondName'] ?? '';
     this.address = map['address'] ?? '';
     this.postCode = map['postCode'] ?? '';
-    this.accountNumber = map['accountNumber'] ?? '';
+    this.accountNumber = map['accountNumer'] ?? '';
+    this.email = map['email'] ?? '';
   }
 }

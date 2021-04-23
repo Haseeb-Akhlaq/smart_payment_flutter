@@ -3,13 +3,16 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smartpayment_flutter/models/recent_companies_model.dart';
 
 import '../../models/companies_model.dart';
 
 class PayBillScreen extends StatefulWidget {
   final LocalCompanyModel company;
+  final bool isedit;
+  final RecentCompanyModel recentCompanyModel;
 
-  const PayBillScreen({this.company});
+  const PayBillScreen({this.company, this.recentCompanyModel, this.isedit});
   @override
   _PayBillScreenState createState() => _PayBillScreenState();
 }
@@ -32,6 +35,17 @@ class _PayBillScreenState extends State<PayBillScreen> {
   final userId = FirebaseAuth.instance.currentUser.uid;
 
   var initialUserData;
+
+  setRecentCompanyData() {
+    if (widget.isedit) {
+      firstNameController.text = widget.recentCompanyModel.firstName;
+      secondNameController.text = widget.recentCompanyModel.secondName;
+      emailController.text = widget.recentCompanyModel.email;
+      addressController.text = widget.recentCompanyModel.address;
+      postCodeController.text = widget.recentCompanyModel.postCode;
+      accountNumberController.text = widget.recentCompanyModel.accountNumber;
+    }
+  }
 
   getUserData() async {
     setState(() {
@@ -158,6 +172,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
   @override
   void initState() {
     getUserData();
+    setRecentCompanyData();
     super.initState();
   }
 
@@ -403,7 +418,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   keyboardType: TextInputType.number,
                                   textAlign: TextAlign.left,
                                   decoration: InputDecoration(
-                                    hintText: 'Enter the Bill amount \$',
+                                    hintText: 'Enter the Bill amount £',
                                     border: InputBorder.none,
                                   ),
                                   onChanged: (va) {
@@ -461,7 +476,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  '${amount.toString()} \$',
+                                  '${amount.toString()} £',
                                   style: TextStyle(
                                     fontSize: 25,
                                   ),

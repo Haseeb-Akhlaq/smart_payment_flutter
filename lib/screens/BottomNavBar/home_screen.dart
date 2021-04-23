@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smartpayment_flutter/models/companies_model.dart';
 import 'package:smartpayment_flutter/models/recent_companies_model.dart';
+import 'package:smartpayment_flutter/screens/BottomNavBar/payBillScreen.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../models/user_model.dart';
@@ -72,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 20,
                             ),
                             Text(
-                              'Remaing Balance:   \$${appUser.walletBalance}',
+                              'Remaing Balance:   £${appUser.walletBalance}',
                               style: TextStyle(fontSize: 20),
                             )
                           ],
@@ -127,31 +129,48 @@ class _RecentCompaniesState extends State<RecentCompanies> {
         return GridView.builder(
           itemCount: allRecentCompanies.length,
           itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  width: 2,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PayBillScreen(
+                        company: LocalCompanyModel(
+                            id: allRecentCompanies[index].id,
+                            name: allRecentCompanies[index].name,
+                            pic: allRecentCompanies[index].pic,
+                            tags: []),
+                        isedit: true,
+                        recentCompanyModel: allRecentCompanies[index],
+                      ),
+                    ));
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 2,
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 150,
-                    child: Image.network(allRecentCompanies[index].pic),
-                  ),
-                  Text(allRecentCompanies[index].name),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    timeago.format(allRecentCompanies[index].time),
-                    style: TextStyle(fontSize: 12),
-                  )
-                ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 150,
+                      child: Image.network(allRecentCompanies[index].pic),
+                    ),
+                    Text(allRecentCompanies[index].name),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      timeago.format(allRecentCompanies[index].time),
+                      style: TextStyle(fontSize: 12),
+                    )
+                  ],
+                ),
               ),
             );
           },

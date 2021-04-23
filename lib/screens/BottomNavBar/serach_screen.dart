@@ -46,56 +46,65 @@ class CompaniesSearch extends SearchDelegate<String> {
   List<LocalCompanyModel> companies = [
     LocalCompanyModel(
         id: '1',
-        name: 'Pacific Gas & Electric',
+        name: 'Hastings Insurance',
         pic:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pacific_Gas_and_Electric_Company_%28logo%29.svg/160px-Pacific_Gas_and_Electric_Company_%28logo%29.svg.png',
+            'https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Hastings_Insurance_logo.svg/1200px-Hastings_Insurance_logo.svg.png',
         tags: [
-          'electric',
-          'Pacific Gas & Electric',
-          'electricity',
-          'pacific',
-          'gas',
-          'p',
+          'Insurance',
+          'insurance.',
+          'h',
+          'Hasting',
         ]),
     LocalCompanyModel(
         id: '2',
-        name: 'Georgia Power',
-        pic:
-            'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Georgia_Power_logo.svg/156px-Georgia_Power_logo.svg.png',
+        name: 'Directline Insurance',
+        pic: 'https://www.directline.com/assets/images/logo.webp',
         tags: [
-          'electric',
-          'Georgia Power',
-          'electricity',
-          'pacific',
-          'gas',
-          'g',
+          'Insurance',
+          'insurance.',
+          'd',
+          'Directline',
         ]),
     LocalCompanyModel(
         id: '3',
-        name: 'DTE Energy',
+        name: 'EE Limited',
         pic:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/DTE_Logo_Blue.svg/220px-DTE_Logo_Blue.svg.png',
+            'https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/743/cached.offlinehbpl.hbpl.co.uk/news/OMC/265100C4-9201-D612-15772E6064E9338B.jpg',
         tags: [
-          'ele'
-              'electric',
-          'DTE Energy',
-          'electricity',
-          'pacific',
-          'gas',
-          'd',
+          'ee',
+          'e',
+          'EE Limited',
+          'e',
         ]),
     LocalCompanyModel(
         id: '4',
-        name: 'Mint Mobile',
+        name: 'Vodafone',
         pic:
-            'https://cdn.mos.cms.futurecdn.net/VtBoNedemNoaRqp6tW9tEb-970-80.jpg.webp',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz6sqNrkAhk325cZ63whBYsZ_KvUt5NEJBxg&usqp=CAU',
         tags: [
           'mobile',
           'ph',
           'phone',
-          'm',
-          'mint',
+          'Vodafone',
+          'vodafone'
+              'v',
         ]),
+    LocalCompanyModel(
+        id: '5',
+        name: 'SES Water',
+        pic:
+            'https://upload.wikimedia.org/wikipedia/en/c/cd/SES_Water_Logo.png',
+        tags: [
+          'SES Water',
+          'ses',
+          's',
+        ]),
+    LocalCompanyModel(
+        id: '6',
+        name: 'British Gas',
+        pic:
+            'https://upload.wikimedia.org/wikipedia/en/thumb/1/11/British_Gas_logo.svg/1200px-British_Gas_logo.svg.png',
+        tags: ['British Gas', 'british', 'gas', 'b']),
   ];
 
   List<LocalCompanyModel> recentList = [];
@@ -129,7 +138,7 @@ class CompaniesSearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<LocalCompanyModel> suggestionList =
-        query.isEmpty ? recentList : searchResults(query);
+        query.isEmpty ? companies : searchResults(query);
 
     return ListView.builder(
         itemCount: suggestionList.length,
@@ -141,6 +150,8 @@ class CompaniesSearch extends SearchDelegate<String> {
                   MaterialPageRoute(
                     builder: (context) => PayBillScreen(
                       company: suggestionList[index],
+                      isedit: false,
+                      recentCompanyModel: null,
                     ),
                   ));
             },

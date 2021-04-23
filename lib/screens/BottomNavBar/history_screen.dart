@@ -71,7 +71,7 @@ class _TranscationHistoryState extends State<TranscationHistory> {
                 style: TextStyle(fontSize: 12),
               ),
               trailing: Text(
-                '\$${firebaseData[index].data()['amountPaid']}',
+                '£${firebaseData[index].data()['amountPaid']}',
                 style: TextStyle(fontSize: 18),
               ),
             );
